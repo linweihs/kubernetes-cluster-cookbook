@@ -7,6 +7,9 @@
 
 case node['platform']
 when 'redhat', 'centos', 'fedora'
+  # flannel is a virtual network that gives a subnet to each host for use with container runtimes.
+  # Platforms like Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. 
+  # The advantage of this model is that it reduces the complexity of doing port mapping.
   yum_package "flannel #{node['kubernetes_cluster']['package']['flannel']['version']}"
   yum_package "#{node['kubernetes_cluster']['package']['docker']['name']} #{node['kubernetes_cluster']['package']['docker']['version']}"
   yum_package "kubernetes-node #{node['kubernetes_cluster']['package']['kubernetes_node']['version']}"
