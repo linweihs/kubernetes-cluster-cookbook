@@ -14,6 +14,7 @@ when 'redhat', 'centos', 'fedora'
   yum_package "cockpit #{node['kubernetes_cluster']['package']['cockpit']['version']}" do
     only_if { node['kubernetes_cluster']['package']['cockpit']['enabled'] }
   end
+  # etcd is an open-source distributed key value store that provides shared configuration and service discovery for Container Linux clusters
   yum_package "etcd #{node['kubernetes_cluster']['package']['etcd']['version']}"
   yum_package "kubernetes-master #{node['kubernetes_cluster']['package']['kubernetes_master']['version']}"
 end
